@@ -1,4 +1,4 @@
-package cstjean.mobile.myapplication.ui.theme
+package cstjean.mobile.Carte_fidele.ui.theme
 
 import android.app.Activity
 import android.os.Build

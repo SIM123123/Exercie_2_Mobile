@@ -1,4 +1,4 @@
-package cstjean.mobile.myapplication.ui.theme
+package cstjean.mobile.Carte_fidele.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package cstjean.mobile.myapplication
+package cstjean.mobile.Carte_fidele
 
 import org.junit.Test
 
