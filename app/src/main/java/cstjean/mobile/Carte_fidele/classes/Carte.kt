@@ -9,5 +9,5 @@ data class Carte(
     val nomCommerce: String,
     val numeroCarte: String,
     val typeCommerce: Enum<Type>,
-    val couleurCarte: Int
+    val couleurCarte: String
 )
