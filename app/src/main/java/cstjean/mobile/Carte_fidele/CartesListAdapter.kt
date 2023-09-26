@@ -2,7 +2,6 @@ package cstjean.mobile.Carte_fidele
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import cstjean.mobile.Carte_fidele.databinding.ListItemCarteBinding
 import cstjean.mobile.Carte_fidele.classes.Carte
@@ -25,7 +24,8 @@ class CarteHolder(private val binding: ListItemCarteBinding) :
     fun bind(carte: Carte) {
         binding.commerceNom.text = carte.nomCommerce
         binding.numeroCarte.text = carte.numeroCarte
-        binding.typeCommerce.text = carte.typeCommerce.toString()
+        binding.typeCommerce.setImageResource(carte.typeCommerce.vecteurAsset)
+        binding.carteCardView.setCardBackgroundColor(android.graphics.Color.parseColor(carte.couleurCarte))
     }
 }
 

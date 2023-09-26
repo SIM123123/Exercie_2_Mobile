@@ -1,6 +1,5 @@
 package cstjean.mobile.Carte_fidele.classes
 
-import java.util.Date
 
 /**
  * Une carte
@@ -8,6 +7,6 @@ import java.util.Date
 data class Carte(
     val nomCommerce: String,
     val numeroCarte: String,
-    val typeCommerce: Enum<Type>,
+    val typeCommerce: Type,
     val couleurCarte: String
 )

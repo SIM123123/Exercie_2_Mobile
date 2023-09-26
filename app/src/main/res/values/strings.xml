@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Cartes de fidélité</string>
+    <string name="ajout_carte">ajouter une carte</string>
 </resources>

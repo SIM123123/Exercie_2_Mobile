@@ -2,12 +2,23 @@ package cstjean.mobile.Carte_fidele
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import cstjean.mobile.Carte_fidele.classes.Carte
+import cstjean.mobile.Carte_fidele.classes.Type
 import cstjean.mobile.Carte_fidele.databinding.FragmentCartesListBinding
+import io.github.serpro69.kfaker.Faker
+import kotlinx.coroutines.launch
 
 class CartesListFragment : Fragment() {
     private var _binding: FragmentCartesListBinding? = null
@@ -43,6 +54,39 @@ class CartesListFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.fragment_cartes_list, menu)
+            }
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                val faker = Faker()
+                return when (menuItem.itemId) {
+                    R.id.nouveau_travail -> {
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            val nouvelleCarte = Carte(
+                                faker.commerce.brand(),
+                                faker.business.creditCardNumbers(),
+                                faker.random.nextEnum<Type>(),
+                                "#FF8886"
+                            )
+                        }
+
+                        /**
+                         * TODO: Ajouter la carte à la liste de cartes
+                         *
+                         * */
+
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
     /**
      * Lorsque la vue est détruite.
      */
