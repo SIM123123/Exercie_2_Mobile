@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "cstjean.mobile.Carte_fidele"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "cstjean.mobile.Carte_fidele"
