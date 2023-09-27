@@ -15,7 +15,7 @@ class CarteRepository private constructor(context: Context){
         CarteDatabase::class.java,
         DATABASE_NAME
     )
-        .createFromAsset(DATABASE_NAME)
+        //.createFromAsset(DATABASE_NAME)
         .build()
 
     fun getCartes(): Flow<List<Carte>> = database.carteDao().getCartes()
