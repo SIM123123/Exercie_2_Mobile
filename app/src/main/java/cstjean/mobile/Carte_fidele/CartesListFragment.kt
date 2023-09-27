@@ -6,8 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import cstjean.mobile.Carte_fidele.databinding.FragmentCartesListBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class CartesListFragment : Fragment() {
     private var _binding: FragmentCartesListBinding? = null
@@ -36,12 +41,21 @@ class CartesListFragment : Fragment() {
 
         binding.cartesRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        val cartes = cartesListViewModel.cartes
-        val adapter = CartesListAdapter(cartes)
-        binding.cartesRecyclerView.adapter = adapter
-
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    cartesListViewModel.cartes.collect() { cartes ->
+                        binding.cartesRecyclerView.adapter = CartesListAdapter(cartes)
+                    }
+                }
+            }
+        }
+
 
     /**
      * Lorsque la vue est détruite.
